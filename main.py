@@ -9,7 +9,6 @@ def main():
 
     print("Введите пароль. На его основе информация будет записана в определенную область картинки")
     password = getPasswordFromUser(shape = shape)
-    print(password)
     print("Что мы сделаем с этим файлом?")
     option = getOptionFromUser()
     if option == 1:

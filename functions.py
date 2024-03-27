@@ -102,7 +102,6 @@ def calculateAndExtract(fileName : str, length : int, password : int) -> None:
                     text1 += convertBytes2Str(bytes1)
                     bytes1 =''
                 if len(bytes2) == 8:
-                    print(bytes2)
                     text2 += convertBytes2Str(bytes2)
                     bytes2 = ''
                 counter += 1
@@ -122,7 +121,6 @@ def calculateAndEmbed(fileName : str, text : str, mode : int, password : int) ->
     img = Image.open(f'data/{fileName}').convert("RGB")
 
     textb1 = convertStr2Bytes(text)
-    print(textb1)
     pixel_map = img.load()
 
     width, height = img.size
@@ -142,18 +140,14 @@ def calculateAndEmbed(fileName : str, text : str, mode : int, password : int) ->
                 gb = format(g, "08b")
                 bb = format(b, "08b")
 
-                print(rb, gb, bb)
-
                 if mode == 1:
                     rb = rb[:-1] + textb1[len(textb1) - counter]  
                     gb = gb[:-1] + textb1[len(textb1) - counter]  
                     bb = bb[:-1] + textb1[len(textb1) - counter]  
-                    print(rb, gb, bb)
 
                     rNew = convertBytes2Int(rb)
                     gNew = convertBytes2Int(gb)
                     bNew = convertBytes2Int(bb)
-                    print((rNew, gNew, bNew))
 
                     pixel_map[i, j] = (rNew, gNew, bNew)
                     counter -= 1
@@ -161,13 +155,11 @@ def calculateAndEmbed(fileName : str, text : str, mode : int, password : int) ->
                     rb = rb[:-2] + textb1[len(textb1) - counter + 1] + textb1[len(textb1) - counter]  
                     gb = gb[:-2] + textb1[len(textb1) - counter + 1] + textb1[len(textb1) - counter]  
                     bb = bb[:-2] + textb1[len(textb1) - counter + 1] + textb1[len(textb1) - counter] 
-                    
-                    print(rb, gb, bb)
 
                     rNew = convertBytes2Int(rb)
                     gNew = convertBytes2Int(gb)
                     bNew = convertBytes2Int(bb)
-                    print((rNew, gNew, bNew))
+
                     pixel_map[i, j] = (rNew, gNew, bNew)
                     counter -= 2
                 if counter == 0:
